@@ -132,13 +132,14 @@ class Services_Qype_Places extends Services_Qype_Common
     }
     
     /**
-     * setLocation - using latitude and longitude
+     * setGeoLocation - using latitude and longitude
      * 
      * @param float $latitude  Latitude
      * @param float $longitude Longitude
      * 
      * @return Services_Qype_Places
      * @todo   Validate input?
+     * @see    self::setLocation()
      */
     public function setGeoLocation($latitude, $longitude)
     {
