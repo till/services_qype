@@ -78,7 +78,7 @@ class Services_Qype_Users extends Services_Qype_Common
      * @return mixed
      * @uses   self::getUser()
      */
-    public function getReviewsByUser($nickname)
+    public function getReviews($nickname)
     {
         return $this->getUser($nickname, true);
     }
