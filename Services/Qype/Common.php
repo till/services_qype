@@ -131,6 +131,6 @@ class Services_Qype_Common
      */
     protected function parseResponse($response)
     {
-        var_dump($response);
+        return simplexml_load_string($response);
     }
 }
