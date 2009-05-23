@@ -43,7 +43,8 @@ class Services_Qype_Common
     protected $version;
     protected $endpoint = 'api.qype.com';
     protected $client;
-    
+    protected $consumer;
+
     /**
      * CTR
      * 
@@ -68,6 +69,12 @@ class Services_Qype_Common
         $this->client = $client;
         return $this;
     }
+
+    public function setConsumer(OAuthConsumer $consumer)
+    {
+        $this->consumer = $consumer;
+        return $this;
+    }
     
     /**
      * Make the request.
@@ -75,20 +82,24 @@ class Services_Qype_Common
      * @param string $call A URL resource.
      * 
      * @return mixed
+     * @throws Services_Qype_Exception
      * @uses   self::$endpoint
      * @uses   self::$client
      * @uses   HTTP_Request2
      */
     public function makeRequest($call, $body = null)
     {
-        $uri = "http://{$this->endpoint}/{$call}";
+        $uri = "http://{$this->endpoint}{$call}";
         
         if (!($this->client instanceof HTTP_Request2)) {
             $this->client = new HTTP_Request2();
             $this->client->setAdapter('socket'); // FIXME
         }
-        
-        $this->client->setUrl($uri);
+
+        $oauth = OAuthRequest::from_consumer_and_token($this->consumer, NULL, 'GET', $uri);
+        $oauth->sign_request(new OAuthSignatureMethod_HMAC_SHA1(), $this->consumer, NULL);
+
+        $this->client->setUrl($oauth->to_url());
         $this->client->setMethod(HTTP_Request2::METHOD_GET);
         
         if ($body !== null) {
@@ -96,10 +107,21 @@ class Services_Qype_Common
         }
         
         try {
-            return $this->client->send();
+            $response = $this->client->send();
         } catch (HTTP_Request2_Exception $e) {
             throw new Services_Qype_Exception($e->getMessage(), $e->getCode());
         }
+
+        $status = $response->getStatus();
+        $body   = $response->getBody();
+
+        if (in_array($status, array(401, 404, 500, 503))) {
+            throw new Services_Qype_Exception($body, $status);
+        }
+        if ($status == 200) {
+            return $body;
+        }
+        throw new Services_Qype_Exception($body, $status);
     }
     
     /**

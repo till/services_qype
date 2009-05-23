@@ -50,6 +50,7 @@ class Services_Qype
     protected $version;
     protected $stack;
     protected $client;
+    protected $consumer;
     
     /**
      * CTR
@@ -58,8 +59,11 @@ class Services_Qype
      * 
      * @return Services_Qype
      */
-    public function __construct($version = 1)
+    public function __construct($appKey, $appSecret, OAuthConsumer $consumer = null, $version = 1)
     {
+        if ($consumer == null) {
+            $this->consumer = new OAuthConsumer($appKey, $appSecret, 1);
+        }
         $this->version = $version;
     }
     
@@ -94,6 +98,7 @@ class Services_Qype
             $className = "Services_Qype_" . ucwords($method);
             
             $this->stack[$method] = new $className($this->version);
+            $this->stack[$method]->setConsumer($this->consumer);
             if (($this->client instanceof HTTP_Request2)) {
                 $this->stack[$method]->setClient($this->client);
             }
