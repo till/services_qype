@@ -44,6 +44,8 @@ class Services_Qype_Places extends Services_Qype_Common
     protected $fetchLocation;
     protected $fetchCategory;
     protected $fetchQuery;
+
+    protected $latitude, $longitude;
     
     public function getPlaces($nearPosition = false)
     {
@@ -53,7 +55,7 @@ class Services_Qype_Places extends Services_Qype_Common
             $call .= "/v{$this->version}/places?";
         } else {
             if ($this->latitude === null || $this->longitude === false) {
-                throw new Services_Qype_Excepton("Please use setGeoLocation()");
+                throw new Services_Qype_Exception("Please use setGeoLocation()");
             }
             $call .= "/v{$this->version}/positions/";
             $call .= "{$this->latitude},{$this->longitude}";
