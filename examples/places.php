@@ -25,7 +25,12 @@ $long = 13.467888;
 try {
     $qype = new Services_Qype($appKey, $appSecret);
     //$qype->places()->setGeoLocation($long, $lat);
+    //var_dump($qype->places()->getPlaces($near));
+
+    var_dump($qype->places()->getPlace(50766));
+
     var_dump($qype->places()->getPlaces($near));
+
 } catch (Exception $e) {
     var_dump($e);
 }
