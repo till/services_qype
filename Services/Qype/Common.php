@@ -40,21 +40,43 @@
  */
 class Services_Qype_Common
 {
+    /**
+     * @var int $version Version of the Qype API.
+     */
     protected $version;
+    
+    /**
+     * @var string $endpoint
+     */
     protected $endpoint = 'api.qype.com';
+
+    /**
+     * @var HTTP_Request2 $client
+     */
     protected $client;
+    
+    /**
+     * @var OAuthConsumer $consumer
+     */
     protected $consumer;
+    
+    /**
+     * @var array $language
+     */
+    protected $language;
 
     /**
      * CTR
      * 
-     * @param int $version 1
+     * @param array $language
+     * @param int   $version 1
      * 
      * @return Services_Qype_Common
      */
-    public function __construct($version)
+    public function __construct(array $language, $version)
     {
-        $this->version = $version;
+        $this->language = $language; // assume this is correct
+        $this->version  = $version;
     }
     
     /**
@@ -94,7 +116,18 @@ class Services_Qype_Common
         if (!($this->client instanceof HTTP_Request2)) {
             $this->client = new HTTP_Request2();
             $this->client->setAdapter('socket'); // FIXME
-            $this->client->setHeader('User-Agent', 'Services_Qype, @package_version@');
+            $this->client->setHeader(
+                'User-Agent',
+                'Services_Qype, @package_version@'
+            );
+            $this->client->setHeader(
+                'Accept-Language',
+                $this->language['ui']
+            );
+            $this->client->setHeader(
+                'X-Accept-Content-Language',
+                $this->language['content']
+            );
         }
 
         $url = parse_url($uri);
