@@ -16,6 +16,9 @@ Get your API key and secret from [Qype][dev].
 
  * Create package.xml to install this
  * Clean up OAuth implementation
+ * Services_Qype_Categories
+ * Services_Qype_Tags
+ * Services_Qype_Users
 
 [dev]: http://www.qype.com/developers/api
 
