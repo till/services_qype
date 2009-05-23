@@ -11,14 +11,17 @@ Get your API key and secret from [Qype][dev].
 
     $qype->places()->setGeoLocation(XX, XX);
     var_dump($qype->places()->getPlaces(true));
+    
+## More examples?
+
+Check out the examples [directory][ex].
 
 ## TODO
 
  * Create package.xml to install this
  * Clean up OAuth implementation
- * pagination
+ * add support for pagination in search results
+ * add support for rectangle geo search
 
 [dev]: http://www.qype.com/developers/api
-
-
-
+[ex]: http://github.com/till/services_qype/tree/0159eba3e62f83c4e984e0634108b5ab7b3beb94/examples
