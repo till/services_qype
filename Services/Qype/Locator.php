@@ -50,9 +50,12 @@ class Services_Qype_Locator extends Services_Qype_Common
     protected $fetchOrder;
     protected $fetchCategory;
     
-    public function getLocators()
+    public function getLocators($query = null)
     {
         $call = "/v{$this->version}/locators";
+        if ($query != null) {
+            $call .= '?show=' . urlencode($query);
+        }
         $resp = $this->makeRequest($call);
         return $this->parseResponse($resp);
     }
