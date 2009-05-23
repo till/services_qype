@@ -94,7 +94,7 @@ class Services_Qype_Common
         if (!($this->client instanceof HTTP_Request2)) {
             $this->client = new HTTP_Request2();
             $this->client->setAdapter('socket'); // FIXME
-            $this->req->setHeader('User-Agent', 'Services_Qype, @package_version@');
+            $this->client->setHeader('User-Agent', 'Services_Qype, @package_version@');
         }
 
         $oauth = OAuthRequest::from_consumer_and_token($this->consumer, NULL, 'GET', $uri);
