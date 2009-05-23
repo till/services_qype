@@ -97,12 +97,32 @@ class Services_Qype_Common
             $this->client->setHeader('User-Agent', 'Services_Qype, @package_version@');
         }
 
-        $oauth = OAuthRequest::from_consumer_and_token($this->consumer, NULL, 'GET', $uri);
+        $url = parse_url($uri);
+
+        $api = sprintf('%s://%s%s', $url['scheme'], $url['host'], $url['path']);
+        if (isset($url['query'])) {
+            $query  = explode('&', $url['query']);
+            $params = array();
+            foreach ($query as $pair) {
+                list($key, $value) = explode('=', $pair);
+                $params[$key] = $value;
+            }
+        } else {
+            $params = null;
+        }
+
+        $oauth = OAuthRequest::from_consumer_and_token(
+            $this->consumer,
+            null,
+            HTTP_Request2::METHOD_GET,
+            $api,
+            $params
+        );
         $oauth->sign_request(new OAuthSignatureMethod_HMAC_SHA1(), $this->consumer, NULL);
 
         $this->client->setUrl($oauth->to_url());
         $this->client->setMethod(HTTP_Request2::METHOD_GET);
-        
+
         if ($body !== null) {
             $this->client->setBody($body);
         }
