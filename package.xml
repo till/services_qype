@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Services_Qype</name>
+ <channel>pear.php.net</channel>
+ <summary>A PHP wrapper for the qype.com-API</summary>
+ <description>A PHP wrapper for the qype.com-API</description>
+ <lead>
+  <name>till</name>
+  <user>till</user>
+  <email>till@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-11-30</date>
+ <time>19:29:13</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+ <notes>
+Initial release
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="39dee017be824446f7e33378c214998d" name="/examples/categories.php" role="php" />
+   <file baseinstalldir="/" md5sum="89133924e3745c3207a9dcb23ae376d9" name="/examples/conf.php-dist" role="data" />
+   <file baseinstalldir="/" md5sum="3b841bf17a0e8583ec9bbc58a6caf6c4" name="/examples/locators.php" role="php" />
+   <file baseinstalldir="/" md5sum="1d5a342d55aa19ebac40a0f43f414102" name="/examples/places.php" role="php" />
+   <file baseinstalldir="/" md5sum="99afd8ce597c46e3a67e6f38dc07f32d" name="/examples/tags.php" role="php" />
+   <file baseinstalldir="/" md5sum="5cad0ec80f329e5876c10e7eedb3ba60" name="/examples/users-de.php" role="php" />
+   <file baseinstalldir="/" md5sum="adb14852760841ef1f0a6c1963e83b61" name="/examples/users.php" role="php" />
+   <file baseinstalldir="/" md5sum="5f9e1abad76c15350a3dab5460ada51a" name="/external/OAuth.php" role="php" />
+   <file baseinstalldir="/" md5sum="bb17a2aa344a183fa8269016356a9166" name="/Services/Qype.php" role="php" />
+   <file baseinstalldir="/" md5sum="95854327f18025adb7c6318b199d086f" name="/Services/Qype/Categories.php" role="php" />
+   <file baseinstalldir="/" md5sum="2f955e4ad4f2442cb308950f014bec8c" name="/Services/Qype/Common.php" role="php" />
+   <file baseinstalldir="/" md5sum="97941aacc13732ce493929bca8037a57" name="/Services/Qype/Exception.php" role="php" />
+   <file baseinstalldir="/" md5sum="9c3d0209e9039af046763434855c598d" name="/Services/Qype/Locator.php" role="php" />
+   <file baseinstalldir="/" md5sum="023faae7e1fbe9717d260c2e60813ecd" name="/Services/Qype/Places.php" role="php" />
+   <file baseinstalldir="/" md5sum="b4e1a2897177e41aa3e060e4b049c956" name="/Services/Qype/Tags.php" role="php" />
+   <file baseinstalldir="/" md5sum="a20371017a04a5486764cad94efede41" name="/Services/Qype/Users.php" role="php" />
+   <file baseinstalldir="/" md5sum="37d13a4b06bc52056ed596487bebec43" name="README.markdown" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2011-11-30</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+   <notes>
+Initial release
+   </notes>
+  </release>
+ </changelog>
+</package>
