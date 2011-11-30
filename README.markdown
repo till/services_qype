@@ -18,7 +18,6 @@ Check out the examples [directory][ex].
 
 ## TODO
 
- * Create package.xml to install this
  * Clean up OAuth implementation
  * add support for pagination in search results
  * add support for rectangle geo search
